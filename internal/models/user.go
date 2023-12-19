@@ -1,12 +1,7 @@
 package models
 
-import (
-	"gorm.io/gorm"
-)
-
 type User struct {
-	gorm.Model
-	ID        uint64 `gorm:"primaryKey;unsigned"`
+	ID        uint64 `gorm:"primaryKey;unsigned;autoIncrement"`
 	Username  string `gorm:"not null;unique"`
 	Email     string `gorm:"not null"`
 	Name      string `gorm:"not null"`

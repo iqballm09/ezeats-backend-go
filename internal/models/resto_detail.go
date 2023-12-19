@@ -1,9 +1,6 @@
 package models
 
-import "gorm.io/gorm"
-
 type RestoDetail struct {
-	gorm.Model
 	ID           uint64 `gorm:"primaryKey"`
 	RestoID      uint64
 	KecamatanID  uint32

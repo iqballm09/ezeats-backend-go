@@ -1,9 +1,6 @@
 package models
 
-import "gorm.io/gorm"
-
 type Review struct {
-	gorm.Model
 	ID          uint64 `gorm:"primaryKey;unsigned"`
 	UserID      uint64
 	RestoID     uint64

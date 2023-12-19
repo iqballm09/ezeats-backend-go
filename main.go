@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/iqballm09/ezeats-backend-go/database"
+	"github.com/iqballm09/ezeats-backend-go/router"
 )
 
 func main() {
@@ -12,10 +13,8 @@ func main() {
 	// establish database connection
 	database.ConnectDB()
 
-	// define root route
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	// add routes to app
+	router.SetupRouter(app)
 
-	app.Listen(":3000")
+	app.Listen(":3003")
 }

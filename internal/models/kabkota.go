@@ -1,9 +1,6 @@
 package models
 
-import "gorm.io/gorm"
-
 type Kabkota struct {
-	gorm.Model
 	ID           uint16 `gorm:"primaryKey;unsigned"`
 	ProvinsiID   uint8
 	Kode         uint16 `gorm:"unique;not null;unsigned"`
