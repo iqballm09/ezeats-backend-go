@@ -36,7 +36,7 @@ func UpdateUser(c *fiber.Ctx) error {
 	var updateUserData updateUser
 	err := c.BodyParser(&updateUserData)
 	if err != nil {
-		return c.Status(500).JSON(fiber.Map{"status": "failed", "message": "Check your input!", "data": err})
+		return c.Status(400).JSON(fiber.Map{"status": "failed", "message": "Check your input!", "data": err})
 	}
 
 	// update the data

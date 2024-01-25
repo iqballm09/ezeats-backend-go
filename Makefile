@@ -5,4 +5,4 @@ run: build
 	./server
 
 watch:
-	reflex -s -r '\.go$$' make run
+	reflex -s -r './usr/local/go/bin/go$$' make run

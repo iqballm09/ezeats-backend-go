@@ -25,7 +25,7 @@ func DeleteUser(c *fiber.Ctx) error {
 
 	result := db.Delete(&user, "id = ?", id)
 	if result.Error != nil {
-		return c.Status(500).JSON(fiber.Map{"status": "failed", "message": fmt.Sprintf("Failed to delete user by ID = %d!", id), "data": result.Error})
+		return c.Status(400).JSON(fiber.Map{"status": "failed", "message": fmt.Sprintf("Failed to delete user by ID = %d!", id), "data": result.Error})
 	}
 	return c.Status(200).JSON(fiber.Map{"status": "success", "message": fmt.Sprintf("User with ID = %d has been deleted", id)})
 }

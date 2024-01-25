@@ -16,11 +16,7 @@ func GetUsers(c *fiber.Ctx) error {
 	// find all users
 	db.Find(&users)
 
-	if len(users) == 0 {
-		return c.Status(404).JSON(fiber.Map{"status": "failed", "message": "Users not found!", "data": nil})
-	}
-
-	return c.Status(200).JSON(fiber.Map{"status": "success", "message": "Users found", "data": users})
+	return c.Status(200).JSON(fiber.Map{"status": "success", "data": users})
 }
 
 func GetUser(c *fiber.Ctx) error {
@@ -34,5 +30,5 @@ func GetUser(c *fiber.Ctx) error {
 	if user.ID == 0 {
 		return c.Status(404).JSON(fiber.Map{"status": "failed", "message": fmt.Sprintf("User by ID = %d not found!", id), "data": nil})
 	}
-	return c.Status(200).JSON(fiber.Map{"status": "success", "message": fmt.Sprintf("User by ID = %d found", id), "data": user})
+	return c.Status(200).JSON(fiber.Map{"status": "success", "data": user})
 }

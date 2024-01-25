@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"time"
 
 	"github.com/iqballm09/ezeats-backend-go/config"
 	"github.com/iqballm09/ezeats-backend-go/internal/models"
@@ -37,10 +38,20 @@ func ConnectDB() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, dbName)
 
 	// connect to database
-	DB, err = gorm.Open(mysql.Open(dsn))
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Failed connect to database!")
 	}
+	// create database pooling
+	sqlDB, err := DB.DB()
+	if err != nil {
+		panic("Failed to create database pooling!")
+	}
+	// add configuration of database pooling
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
+	sqlDB.SetConnMaxIdleTime(10 * time.Minute)
+	sqlDB.SetConnMaxLifetime(120 * time.Minute)
 	log.Println("Database has been connected!")
 
 	// define models
